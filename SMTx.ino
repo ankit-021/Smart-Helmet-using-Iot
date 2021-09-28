@@ -2,9 +2,9 @@
 #include <VirtualWire.h>
 #define DRANK 300   // Define max value that we consider
 
-const int SensorPin1 = 9;             // Head sensor
-const int SensorPin2 = 3;             // Strap Sensor
-const int MQ3 = A3;                   //Alcohol sensor
+const int SensorPin1 = 5;             // Head sensor
+const int SensorPin2 = 6;             // Strap Sensor
+const int MQ3 = A0;                   //Alcohol sensor
 int st_int = 2;                       //ADXL345 Intrrupt 0 to pin 2
 int HeadData,StrapData,AlcoData = 0;
 int Head,Strap = 0;
