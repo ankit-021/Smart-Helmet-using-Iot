@@ -6,8 +6,8 @@ String Incoming_value; //Variable for storing Incoming_value
 const int Headled = 2;
 const int Strapled = 3;
 const int Alcoled = 4;
-const int start = 5;
-const int acc_led = 6;
+const int acc_led = 5;
+const int start = 6;
 
 bool Head,Strap,Alco = false;
 void BT();
