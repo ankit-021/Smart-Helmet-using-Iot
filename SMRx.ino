@@ -1,7 +1,7 @@
 #include <VirtualWire.h>
 int SensorData;          // RF receiver input
-char SensorCharMsg[2];   // RF Transmission container
-String Incoming_value; //Variable for storing Incoming_value
+char SensorCharMsg[5];   // RF Transmission container
+//String Incoming_value; //Variable for storing Incoming_value
 
 const int Headled = 2;
 const int Strapled = 3;
@@ -62,9 +62,10 @@ void loop() {
      notSet();
    }
    
-  if (SensorData == 50)
+  if (SensorData == 10)
   {
     digitalWrite(acc_led, HIGH);
+    Serial.println("accident"); 
     delay(1000);
   }
 /*---------------------------------------------*/
@@ -131,7 +132,24 @@ void notSet(){
 void BT(){
   if(Serial.available() > 0)  
   {
-    Serial.println(SensorData);      //Read the incoming data and store it into variable Incoming_value
-    
+    //Serial.println(SensorData);      //Read the incoming data and store it into variable Incoming_value
+    if(Head == true){
+      Serial.println("Helmettrue"); 
+      }
+    if(Head == false){
+      Serial.println("Helmetfalse"); 
+      }
+    if(Strap == true){
+      Serial.println("Straptrue"); 
+      }
+    if(Strap == false){
+      Serial.println("Strapfalse"); 
+      }
+    if(Alco == true){
+      Serial.println("Alcoholtrue"); 
+      }
+    if(Alco == false){
+      Serial.println("Alcoholfalse"); 
+      }
   }
  }
