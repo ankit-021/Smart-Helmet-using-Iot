@@ -1,5 +1,6 @@
 #include <Wire.h>
 #include <VirtualWire.h>
+
 #define DRANK 300   // Define max value that we consider
 
 const int SensorPin1 = 5;             // Head sensor
@@ -11,10 +12,10 @@ int Head,Strap = 0;
 
 int ADXL345 = 0x53;                   //ADXL345 i2c address
 
-char HeadDataCharMsg[2];
-char StrapDataCharMsg[2];
-char AlcoDataCharMsg[2];
-char msg[2];
+ char HeadDataCharMsg[5];
+ char StrapDataCharMsg[5];
+ char AlcoDataCharMsg[5];
+ int intrid;
 
 void alcoholsens();
 void helmetandstrap();
@@ -52,7 +53,7 @@ void loop()
   // Convert integer data to Char array directly 
   itoa(HeadData,HeadDataCharMsg,5);
   itoa(StrapData,StrapDataCharMsg,5);
-  itoa(AlcoData,AlcoDataCharMsg,10);
+  itoa(AlcoData,AlcoDataCharMsg,5);
  
  vw_send((uint8_t *)HeadDataCharMsg, strlen(HeadDataCharMsg));  // send the message
  vw_wait_tx(); // Wait until the whole message is gone
@@ -74,7 +75,6 @@ void alcoholsens(){
     }
   else
     AlcoData = 07;
-  
   }
 
 void helmetandstrap(){
@@ -84,8 +84,9 @@ void helmetandstrap(){
   if(Head == HIGH){
     HeadData = 02;
     }
-    else
+    else{
     HeadData = 03;
+    }
   if(Strap == HIGH){
     StrapData = 04;
     }
@@ -143,9 +144,9 @@ void intrres(){
   }
 
 void ISRint(){
-  int intrid = 50;
-  itoa(intrid,msg,5);
- vw_send((uint8_t *)msg, strlen(msg));  // send the message
+  intrid = 10;
+  //itoa(intrid,msg,5);
+ vw_send((uint8_t *)intrid, strlen(intrid));  // send the message
  vw_wait_tx(); // Wait until the whole message is gone
  delay(1000);
  }
